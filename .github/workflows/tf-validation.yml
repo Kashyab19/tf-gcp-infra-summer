@@ -1,0 +1,28 @@
+name: "Terraform GCP Deploy"
+
+on:
+  push:
+    branches:
+      - main
+      - feature/assignment-03
+
+jobs:
+  validate:
+    name: "Validate Terraform Templates"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "1.7.3"
+
+      - name: Terraform Initialization
+        run: terraform init
+        # Initializes Terraform, a necessary step before validation
+
+      - name: Terraform Validate
+        run: terraform validate
