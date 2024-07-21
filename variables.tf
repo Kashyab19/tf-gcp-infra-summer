@@ -33,3 +33,16 @@ variable "subnet2" {
   description = "The name of my subnet 2"
   type        = string
 }
+
+variable "custom_image" {
+  description = "Custom image to use for the instance"
+  type        = string
+}
+
+variable "zone" {
+  description = "GCP zone"
+  type        = string
+  default     = "us-central1-a"
+}
+
+
