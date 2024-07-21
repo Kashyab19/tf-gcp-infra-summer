@@ -27,3 +27,10 @@ variable "subnet2" {
   description = "The name of my subnet 2"
   type = string
 }
+
+variable "project_id" {
+  description = "GCP project ID"
+  type        = string
+}
+
+
