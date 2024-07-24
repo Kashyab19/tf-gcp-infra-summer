@@ -50,10 +50,33 @@ module "compute_instance" {
   subnet   = module.vpc.webapp_subnet_self_link
   image    = var.custom_image
   zone     = var.zone
+  service_account_email = module.service_account.email
   startup_script    = templatefile("${path.module}/startup_script.tpl", {
     DB_USER = module.cloudsql.sql_user_name
     DB_PASS = module.cloudsql.sql_user_password
     DB_NAME = module.cloudsql.sql_database_name
     DB_HOST = module.cloudsql.sql_instance_name
   })
+}
+
+module "dns" {
+  source                  = "./dns"
+  webapp_domain_name      = "kashyabcloudapp.me."
+  webapp_dnsrecord_type   = "A"
+  webapp_dns_ttl          = 300
+  managed_zone_webapp     = "my-new-zone"  # The name of your existing managed zone
+  global_ip               = module.vpc.private_service_connect_ip
+}
+
+module "service_account" {
+  source       = "./service_account"
+  account_id   = "vm-service-account"
+  display_name = "VM Service Account"
+  project_id   = var.project_id
+}
+
+module "iam" {
+  source                = "./iam"
+  project_id            = var.project_id
+  service_account_email = module.service_account.email
 }
