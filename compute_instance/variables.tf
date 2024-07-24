@@ -1,7 +1,7 @@
 variable "instance_name" {
   description = "Name of the compute instance"
   type        = string
-  default     = "custom-instance"
+  default     = "custom-instance-after-adding-logging"
 }
 
 variable "machine_type" {
@@ -45,5 +45,10 @@ variable "subnet" {
 
 variable "startup_script" {
   description = "Startup script to initialize the instance"
+  type        = string
+}
+
+variable "service_account_email" {
+  description = "Email of the service account"
   type        = string
 }

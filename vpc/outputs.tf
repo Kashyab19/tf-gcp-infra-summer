@@ -29,3 +29,7 @@ output "db_subnet_id" {
 output "private_vpc_connection_name" {
   value = google_service_networking_connection.private_service_connect.id
 }
+
+output "private_service_connect_ip" {
+  value = google_compute_global_address.private_service_connect_ip.address
+}
