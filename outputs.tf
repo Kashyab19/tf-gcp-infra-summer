@@ -45,3 +45,27 @@ output "instance_name" {
 output "instance_self_link" {
   value = module.compute_instance.instance_self_link
 }
+
+output "sql_instance_connection_name" {
+  value = module.cloudsql.sql_instance_connection_name
+}
+
+# output "database_url_output" {
+#   value = module.compute_instance.database_url
+# }
+
+
+output "cloud_function_url" {
+  description = "The URL of the deployed Cloud Function"
+  value       = module.cloudfunctions.cloud_function_url
+}
+
+output "pubsub_topic_name" {
+  description = "The name of the Pub/Sub topic"
+  value       = module.pubsub.pubsub_topic_name
+}
+
+output "service_account_email" {
+  description = "The email of the service account"
+  value       = module.service_account.email
+}
