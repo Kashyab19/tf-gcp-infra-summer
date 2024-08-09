@@ -29,7 +29,7 @@ resource "google_sql_database" "default" {
   instance = google_sql_database_instance.default.name
 }
 
-resource "random_password" "default" {
+resource "random_password" "generated_password" {
   length  = 16
   special = true
 }
@@ -37,5 +37,5 @@ resource "random_password" "default" {
 resource "google_sql_user" "default" {
   name     = var.db_user
   instance = google_sql_database_instance.default.name
-  password = random_password.default.result
+  password = random_password.generated_password.result
 }

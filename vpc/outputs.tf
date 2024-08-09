@@ -33,3 +33,7 @@ output "private_vpc_connection_name" {
 output "private_service_connect_ip" {
   value = google_compute_global_address.private_service_connect_ip.address
 }
+
+output "vpc_network" {
+  value = google_compute_network.vpc
+}
